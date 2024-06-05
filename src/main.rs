@@ -9,10 +9,20 @@ fn main() {
         let stdin = io::stdin();
         let mut input = String::new();
         stdin.read_line(&mut input).unwrap();
-        match input.trim().to_lowercase().as_str() {
-            "exit" => break,
-            "exit 0" => break,
-            _ => println!("{}: command not found", input.trim()),
+        
+        // Split input into command and arguments
+        let input = input.trim();
+        let mut parts = input.split_whitespace();
+        let command = parts.next();
+        let args: Vec<&str> = parts.collect();
+
+        match command {
+            Some("exit") => break,
+            Some("echo") => {
+                println!("{}", args.join(" "));
+            }
+            Some(cmd) => println!("{}: command not found", cmd),
+            None => continue,
         };
     }
 }
