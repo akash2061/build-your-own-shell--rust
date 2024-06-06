@@ -1,13 +1,14 @@
 #[allow(unused_imports)]
 use std::io::{self, Write};
 use std::{
+    env,
     os::unix::fs::PermissionsExt,
     process::{Command, Stdio},
 };
 
 fn is_builtin(command: &str) -> bool {
     match command {
-        "echo" | "exit" | "type" => true,
+        "echo" | "exit" | "type" | "pwd" => true,
         _ => false,
     }
 }
@@ -70,6 +71,12 @@ fn main() {
                     }
                 }
             }
+            Some("pwd") => match env::current_dir() {
+                Ok(path) => {
+                    println!("{}", path.display());
+                }
+                Err(e) => eprintln!("pwd: error: {}", e),
+            },
             Some(cmd) => {
                 if let Some(executable_path) = find_executable(cmd) {
                     let mut child = Command::new(executable_path)
