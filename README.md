@@ -35,13 +35,13 @@ This is a starting point for Rust solutions to the
 
 ## Download Leatest Release: [rshell](https://github.com/akash2061/codecrafters-shell-rust/releases)
 **Note**: Nevigate to Download folder.
-```bash
-sudo cp rshell /usr/local/bin/
+```ruby
+sudo chmod +x rshell && sudo cp rshell /usr/local/bin/
 
 rshell #run the shell
 ```
 **Delete rshell:**
-```bash
+```ruby
 sudo rm /usr/local/bin/rshell
 ```
 
