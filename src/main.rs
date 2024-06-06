@@ -8,19 +8,6 @@ fn is_builtin(command: &str) -> bool {
     }
 }
 
-fn is_executable(command: &str) -> Option<String> {
-    // Check if the command is available in the system's PATH
-    if let Some(paths) = std::env::var_os("PATH") {
-        for path in std::env::split_paths(&paths) {
-            let full_path = path.join(command);
-            if full_path.is_file() {
-                // Return the full path to the executable
-                return Some(full_path.to_string_lossy().into_owned());
-            }
-        }
-    }
-    None
-}
 fn main() {
     loop {
         print!("$ ");
@@ -30,7 +17,6 @@ fn main() {
         let mut input = String::new();
         stdin.read_line(&mut input).unwrap();
 
-        // Split input into command and arguments
         let input = input.trim();
         let mut parts = input.split_whitespace();
         let command = parts.next();
@@ -45,13 +31,19 @@ fn main() {
                 if args.is_empty() {
                     println!("type: argument required");
                 } else {
+                    let path_env = std::env::var("PATH").unwrap_or_default();
                     for arg in args {
                         if is_builtin(arg) {
                             println!("{} is a shell builtin", arg);
-                        } else if let Some(executable_path) = is_executable(arg) {
-                            println!("{} is {}", arg, executable_path);
                         } else {
-                            println!("{}: command not found", arg);
+                            let split = &mut path_env.split(':');
+                            if let Some(path) =
+                                split.find(|path| std::fs::metadata(format!("{}/{}", path, arg)).is_ok())
+                            {
+                                println!("{} is {}/{}", arg, path, arg);
+                            } else {
+                                println!("{}: not found", arg);
+                            }
                         }
                     }
                 }
