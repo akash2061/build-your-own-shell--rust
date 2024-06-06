@@ -58,7 +58,7 @@ fn main() {
                 } else {
                     let new_dir = args[0];
                     if let Err(e) = env::set_current_dir(new_dir) {
-                        eprintln!("cd: {}: {}", new_dir, e);
+                        eprintln!("{}: No such file or directory", new_dir);
                     }
                 }
             }
