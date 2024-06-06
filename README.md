@@ -6,6 +6,9 @@ This is a starting point for Rust solutions to the
 **Note**: If you're viewing this repo on GitHub, head over to
 [codecrafters.io](https://codecrafters.io) to try the challenge.
 
+# Description:
+**A custom Unix shell built entirely in Rust! This shell offers a seamless and efficient command-line experience for Unix-like operating systems, leveraging the performance and safety features of Rust. It provides a reliable environment for executing commands, managing system interactions, and automating tasks.**
+
 # Passed all Tests by [codecrafters/shell-tester](https://github.com/codecrafters-io/shell-tester)
 
 - ✅ [Print a prompt #OO8](https://app.codecrafters.io/courses/shell/stages/oo8)
