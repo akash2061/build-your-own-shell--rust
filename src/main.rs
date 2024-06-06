@@ -57,9 +57,14 @@ fn main() {
                     eprintln!("cd: missing operand");
                 } else {
                     let new_dir = args[0];
-                    if let Err(_) = env::set_current_dir(new_dir) {
+                    let target_dir = if new_dir == "~" {
+                        env::var("HOME").unwrap_or_else(|_| String::from("/"))
+                    } else {
+                        String::from(new_dir)
+                    };
+
+                    if let Err(_) = env::set_current_dir(&target_dir) {
                         eprintln!("{}: No such file or directory", new_dir);
-                        // println!("{:?}",e);
                     }
                 }
             }
