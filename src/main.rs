@@ -1,14 +1,12 @@
+use std::env;
 #[allow(unused_imports)]
 use std::io::{self, Write};
-use std::{
-    env,
-    os::unix::fs::PermissionsExt,
-    process::{Command, Stdio},
-};
+use std::os::unix::fs::PermissionsExt;
+use std::process::{Command, Stdio};
 
 fn is_builtin(command: &str) -> bool {
     match command {
-        "echo" | "exit" | "type" | "pwd" => true,
+        "echo" | "exit" | "type" | "pwd" | "cd" => true,
         _ => false,
     }
 }
@@ -50,6 +48,20 @@ fn main() {
             Some("echo") => {
                 println!("{}", args.join(" "));
             }
+            Some("pwd") => match env::current_dir() {
+                Ok(path) => println!("{}", path.display()),
+                Err(e) => eprintln!("pwd: error: {}", e),
+            },
+            Some("cd") => {
+                if args.is_empty() {
+                    eprintln!("cd: missing operand");
+                } else {
+                    let new_dir = args[0];
+                    if let Err(e) = env::set_current_dir(new_dir) {
+                        eprintln!("cd: {}: {}", new_dir, e);
+                    }
+                }
+            }
             Some("type") => {
                 if args.is_empty() {
                     println!("type: argument required");
@@ -71,12 +83,6 @@ fn main() {
                     }
                 }
             }
-            Some("pwd") => match env::current_dir() {
-                Ok(path) => {
-                    println!("{}", path.display());
-                }
-                Err(e) => eprintln!("pwd: error: {}", e),
-            },
             Some(cmd) => {
                 if let Some(executable_path) = find_executable(cmd) {
                     let mut child = Command::new(executable_path)
