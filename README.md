@@ -9,19 +9,40 @@ This is a starting point for Rust solutions to the
 # Passed all Tests by [codecrafters/shell-tester](https://github.com/codecrafters-io/shell-tester)
 
 - ✅ [Print a prompt #OO8](https://app.codecrafters.io/courses/shell/stages/oo8)
+
 - ✅ [Handle missing commands #CZ2](https://app.codecrafters.io/courses/shell/stages/cz2)
+
 - ✅ [REPL #FF0](https://app.codecrafters.io/courses/shell/stages/ff0)
+
 - ✅ [The exit builtin #PN5](https://app.codecrafters.io/courses/shell/stages/pn5)
+
 - ✅ [The echo builtin #IZ3](https://app.codecrafters.io/courses/shell/stages/iz3)
+
 - ✅ [The type builtin: builtins #EZ5](https://app.codecrafters.io/courses/shell/stages/ez5)
+
 - ✅ [The type builtin: executable files #MG5](https://app.codecrafters.io/courses/shell/stages/mg5)
+
 - ✅ [Run a program #IP1](https://app.codecrafters.io/courses/shell/stages/ip1)
+
 - ✅ [The pwd builtin #EI0](https://app.codecrafters.io/courses/shell/stages/ei0)
+
 - ✅ [The cd builtin](https://app.codecrafters.io/courses/shell/stages/gp4)
 
-# 
+-  🌟 Enhancements on the horizon: Stay tuned!
 
-# Passing the first stage
+## Download Leatest Release: [rshell]()
+**Note**: Nevigate to Download folder.
+```bash
+sudo cp rshell /usr/local/bin/
+
+rshell #run the shell
+```
+**Delete rshell:**
+```bash
+sudo rm /usr/local/bin/rshell
+```
+
+## Passing the first stage
 
 The entry point for your `shell` implementation is in `src/main.rs`. Study and
 uncomment the relevant code, and push your changes to pass the first stage:
@@ -34,7 +55,7 @@ git push origin master
 
 Time to move on to the next stage!
 
-# Stage 2 & beyond
+## Stage 2 & beyond
 
 Note: This section is for stages 2 and beyond.
 

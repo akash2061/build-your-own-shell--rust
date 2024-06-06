@@ -31,7 +31,7 @@ fn is_executable(path: &std::path::Path) -> bool {
 
 fn main() {
     loop {
-        print!("$ ");
+        print!("\x1b[0;32m$ \x1b[0m");
         io::stdout().flush().unwrap();
 
         let stdin = io::stdin();
