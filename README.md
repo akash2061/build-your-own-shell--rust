@@ -30,7 +30,7 @@ This is a starting point for Rust solutions to the
 
 -  🌟 Enhancements on the horizon: Stay tuned!
 
-## Download Leatest Release: [rshell]()
+## Download Leatest Release: [rshell](https://github.com/akash2061/codecrafters-shell-rust/releases)
 **Note**: Nevigate to Download folder.
 ```bash
 sudo cp rshell /usr/local/bin/
